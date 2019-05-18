@@ -1,73 +1,44 @@
+// Created by Oscar Garcia and Jimmy Morentin
+
 #include <iostream>
 #include <String>
 #include <vector>
 
 using namespace std;
 
-
-int calcRange(int numPar);
-void printTriangle(int numPar);
-void printOddRow(int& curNum, int curRow, int numOfRows);
-void printEvenRow(int & curNum, int curRow, int numOfRows);
+void printTriangle(int numPar); // Loops to print trianlge
+void printOddRow(int& curNum, int curRow, int numOfRows); // Prints odd row
+void printEvenRow(int & curNum, int curRow, int numOfRows); // Prints even row
 
 int main()
 {
+	int verticeRows;
 
-	// get input
+	cout << "How many triangular vertices rows do you want to display? ";
+	cin >> verticeRows;
 
-	int verticeRows = 10;
+	while (verticeRows < 1 || verticeRows > 13)
+	{
+		cout << "Enter an integer from 1 to 13" << endl;
+		cout << "How many triangular vertices rows do you want to display? ";
+		cin >> verticeRows;
+	}
+
 	int slashRows = verticeRows - 1;
 	int totalRows = verticeRows + slashRows;
-	int curNum = 1;
 
 	printTriangle(totalRows);
-
-
-	/*
-> good	1. Find amount of numbers (last number we get) 
-	calcRange();
-
-	2. Print Triangle
-	printTriangle();
-		- Uses a loop such as
-			loop(for rows needed)
-			{
-			if odd row, printOddRow(); // Only numbers are in odd rows
-			if even row, printEvenRow(); // Only slashes are in even rows
-			}
-
-	3. printOdd/EvenRow();
-		- Uses spacesBuffer(); [needs amount of #'s and rows needed]
-	*/
 
 
 
 	system("pause");
 }
 
-int calcRange(int numPar) // Gets total numbers in triangle
-{
-	int numsNeeded = 0;
-	double y;
-
-	for (int x = 1; x < numPar + 1; x++)
-	{
-		if (x % 2 != 0) // odd
-		{
-			y = x;
-			numsNeeded += ((y / 2) + (1.0 / 2));
-			//cout << y / 2 << " + " << "1/2 is " << (y / 2) + (1.0 / 2) << endl;
-			//cout << "nums: " << numsNeeded << endl;
-		}
-	}
-	return numsNeeded;
-}
-
-void printTriangle(int numPar)
+void printTriangle(int numPar) // Receives total rows to print
 {
 	int startingNum = 1;
 
-	for (int x = 1; x < numPar + 1; x++)
+	for (int x = 1; x < numPar + 1; x++) // Print every row
 	{
 		if (x % 2 != 0) // If odd row, print only numbers
 		{
@@ -122,7 +93,7 @@ void printOddRow(int & curNum, int curRow, int numOfRows)
 
 void printEvenRow(int & curNum, int curRow, int numOfRows)
 {
-	double numsInRow = curRow / 2.0 + 1.0 / 2;
+	
 	int fillerSpaces = numOfRows - curRow;
 	double setsNeeded = curRow / 2.0;
 
